@@ -1,0 +1,5 @@
+{
+  "name": "Calculus Vision",
+  "description": "An interactive calculus visualizer showing a function and its first three derivatives with real-time parameter controls and AI-powered mathematical insights.",
+  "requestFramePermissions": []
+}
