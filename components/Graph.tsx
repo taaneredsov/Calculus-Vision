@@ -24,6 +24,7 @@ interface GraphProps {
   };
   singleKey?: keyof Omit<PlotDataPoint, 'x'>;
   title?: string;
+  formula?: string;
   height?: number | string;
 }
 
@@ -43,7 +44,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
   return null;
 };
 
-const Graph: React.FC<GraphProps> = ({ data, visibility, singleKey, title, height = "100%" }) => {
+const Graph: React.FC<GraphProps> = ({ data, visibility, singleKey, title, formula, height = "100%" }) => {
   const isUnified = !!visibility;
 
   const renderLine = (dataKey: string, name: string, color: string, dashed = false, strokeWidth = 2) => (
@@ -61,7 +62,14 @@ const Graph: React.FC<GraphProps> = ({ data, visibility, singleKey, title, heigh
 
   return (
     <div className="w-full h-full bg-slate-900/40 rounded-xl p-2 md:p-4 border border-slate-800/60 shadow-inner flex flex-col">
-      {title && <h3 className="text-xs font-bold text-slate-500 uppercase tracking-tighter mb-2 px-2">{title}</h3>}
+      <div className="flex justify-between items-start mb-2 px-2">
+        {title && <h3 className="text-xs font-bold text-slate-500 uppercase tracking-tighter">{title}</h3>}
+        {formula && !isUnified && (
+          <code className="text-[10px] md:text-xs font-mono text-slate-400 bg-slate-950/50 px-2 py-0.5 rounded truncate max-w-[60%]">
+            {formula}
+          </code>
+        )}
+      </div>
       <div className="flex-grow">
         <ResponsiveContainer width="100%" height={height}>
           <LineChart data={data} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
@@ -71,7 +79,7 @@ const Graph: React.FC<GraphProps> = ({ data, visibility, singleKey, title, heigh
               stroke="#475569" 
               tick={{ fontSize: 10 }} 
               axisLine={{ stroke: '#334155' }}
-              hide={!isUnified && !!title} // Simplify axes for grid items
+              hide={!isUnified && !!title} 
             />
             <YAxis 
               stroke="#475569" 

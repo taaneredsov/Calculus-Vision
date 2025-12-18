@@ -214,10 +214,10 @@ const App: React.FC = () => {
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 h-[500px]">
-                  <Graph data={plotData} singleKey="f" title="f(x) - Base Function" height={220} />
-                  <Graph data={plotData} singleKey="df1" title="f'(x) - First Derivative" height={220} />
-                  <Graph data={plotData} singleKey="df2" title="f''(x) - Second Derivative" height={220} />
-                  <Graph data={plotData} singleKey="df3" title="f'''(x) - Third Derivative" height={220} />
+                  <Graph data={plotData} singleKey="f" title="f(x) - Base Function" formula={derivs.f} height={220} />
+                  <Graph data={plotData} singleKey="df1" title="f'(x) - First Derivative" formula={derivs.f1} height={220} />
+                  <Graph data={plotData} singleKey="df2" title="f''(x) - Second Derivative" formula={derivs.f2} height={220} />
+                  <Graph data={plotData} singleKey="df3" title="f'''(x) - Third Derivative" formula={derivs.f3} height={220} />
                 </div>
               )}
             </div>
